@@ -1,5 +1,5 @@
 import 'package:final_project/appbar.dart';
-import 'package:final_project/search_page.dart';
+import 'package:final_project/search/search_page.dart';
 import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 import 'weather_service.dart';

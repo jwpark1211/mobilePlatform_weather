@@ -25,10 +25,15 @@ class Weather {
       description: json['weather'][0]['description'],
       feelsLike: json['main']['feels_like'],
       humidity: json['main']['humidity'],
-      windSpeed: json['wind']['speed'],
+      windSpeed: (json['wind']['speed'] as num).toDouble(),
       icon: json['weather'][0]['icon'],
-      sunrise: DateTime.fromMillisecondsSinceEpoch(json['sys']['sunrise'] * 1000).toLocal().toIso8601String(),
-      sunset: DateTime.fromMillisecondsSinceEpoch(json['sys']['sunset'] * 1000).toLocal().toIso8601String(),
+      sunrise:
+          DateTime.fromMillisecondsSinceEpoch(json['sys']['sunrise'] * 1000)
+              .toLocal()
+              .toIso8601String(),
+      sunset: DateTime.fromMillisecondsSinceEpoch(json['sys']['sunset'] * 1000)
+          .toLocal()
+          .toIso8601String(),
     );
   }
 }
