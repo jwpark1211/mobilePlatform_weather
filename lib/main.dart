@@ -1,3 +1,5 @@
+import 'package:final_project/appbar.dart';
+import 'package:final_project/search_page.dart';
 import 'package:flutter/material.dart';
 import 'splash_screen.dart';
 import 'weather_service.dart';
@@ -31,10 +33,12 @@ import 'dart:math';
 * */
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,6 +52,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -76,7 +82,10 @@ class _MainScreenState extends State<MainScreen> {
 
   Future<Weather> fetchRandomWeather() async {
     final cityKeys = cities.keys.toList();
-    selectedCity = cityKeys[Random().nextInt(cityKeys.length)];
+    // 시간에 따라 난수가 결정되도록 시드를 정의
+    final seed = DateTime.now().millisecondsSinceEpoch;
+    final random = Random(seed);
+    selectedCity = cityKeys[random.nextInt(cityKeys.length)];
     selectedCityKorean = cities[selectedCity]!;
     return weatherService.fetchWeather(selectedCity);
   }
@@ -93,55 +102,34 @@ class _MainScreenState extends State<MainScreen> {
     // Implement navigation to bookmark page
   }
 
+  void _navigateToSearchPage(BuildContext context) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SearchPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text.rich(TextSpan(children: [
-          TextSpan(
-            text: ' 여행',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: Color(0xFF012677),
-            ),
-          ),
-          TextSpan(
-            text: '을 떠나볼까요?',
-            style: TextStyle(
-              color: Color(0xFF012677),
-              fontSize: 20,
-            ),
-          ),
-        ])),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
-            child: IconButton(
-              icon: Icon(Icons.menu, color: Colors.blue[900]),
-              onPressed: _navigateToBookmark,
-            ),
-          ),
-        ],
-      ),
+      // 앱바를 분리시킴.
+      appBar: const WeatherAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
-                padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
+                padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 10.0),
                 child: TextField(
-                  onSubmitted: _searchCityWeather,
+                  onTap: () => _navigateToSearchPage(context),
                   decoration: InputDecoration(
                     hintText: '지역 검색',
-                    hintStyle: TextStyle(
+                    hintStyle: const TextStyle(
                       fontSize: 15,
                       color: Color(0xFFADAEAF),
                     ),
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.search,
                       color: Color(0xFF012677),
                     ),
@@ -149,29 +137,30 @@ class _MainScreenState extends State<MainScreen> {
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide.none),
                     filled: true,
-                    fillColor: Color(0xFFEEF0F2),
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                    fillColor: const Color(0xFFEEF0F2),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 20.0),
                   ),
                 )),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.fromLTRB(23.0, 0, 16.0, 0),
+              padding: const EdgeInsets.fromLTRB(23.0, 0, 16.0, 0),
               child: Text(
                 '지금 $selectedCityKorean의 날씨는?',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
-              padding: EdgeInsets.fromLTRB(20.0, 0, 16.0, 0),
+              padding: const EdgeInsets.fromLTRB(20.0, 0, 16.0, 0),
               child: FutureBuilder<Weather>(
                 future: futureWeather,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CircularProgressIndicator();
+                    return const CircularProgressIndicator();
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
@@ -181,8 +170,8 @@ class _MainScreenState extends State<MainScreen> {
                 },
               ),
             ),
-            SizedBox(height: 30),
-            Padding(
+            const SizedBox(height: 30),
+            const Padding(
               padding: EdgeInsets.fromLTRB(20.0, 0, 16.0, 0),
               child: Text(
                 '추천 관광지',
@@ -192,8 +181,8 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
-            Padding(
+            const SizedBox(height: 16),
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: TourList(),
             ),
