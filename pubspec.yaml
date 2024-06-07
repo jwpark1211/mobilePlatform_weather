@@ -79,6 +79,7 @@ flutter:
     - assets/wheather_display_images/raining.png
     - assets/wheather_display_images/cloud.png
     - assets/wheather_display_images/fog.png
+    - assets/wheather_display_images/clouds.png
     - assets/regions.xlsx
     - assets/기상청27_관광코스별_관광지_지점정보_courseId_정렬.csv
     - assets/기상청27_관광코스별_관광지_지점정보memo.txt

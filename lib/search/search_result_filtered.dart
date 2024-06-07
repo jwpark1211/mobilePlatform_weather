@@ -14,10 +14,10 @@ class SearchResultFiltered extends StatelessWidget {
     required this.filterSpotAreaName,
   });
 
-  void _navigateToWeatherDisplay(BuildContext context) async {
+  void _navigateToWeatherDisplay(BuildContext context, String? courseId) async {
     await Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const WeatherDisplay()),
+      MaterialPageRoute(builder: (context) => WeatherDisplay(courseId!)),
     );
   }
 
@@ -33,7 +33,7 @@ class SearchResultFiltered extends StatelessWidget {
         itemBuilder: (context, index) {
           Weather_Model statics = filteredData[index];
           return InkWell(
-              onTap: () => _navigateToWeatherDisplay(context),
+              onTap: () => _navigateToWeatherDisplay(context, statics.courseId),
               child: Card(
                 child: ListTile(
                   title: Text(

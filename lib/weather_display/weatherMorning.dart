@@ -7,14 +7,15 @@ import '../search/search_page.dart';
 import 'controller.dart';
 
 class WeatherDisplay extends StatelessWidget {
-  const WeatherDisplay({super.key});
+  String courseId;
+  WeatherDisplay(this.courseId);
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
       initialBinding: BindingsBuilder(() {
-        Get.put(WeatherStaticsController());
+        Get.put(WeatherStaticsController(courseId));
       }),
       theme: ThemeData(
         primaryColor: Colors.white,
@@ -122,6 +123,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
           temperature,
           style: TextStyle(color: textColor, fontSize: 15),
         ),
+
       ],
     );
   }
