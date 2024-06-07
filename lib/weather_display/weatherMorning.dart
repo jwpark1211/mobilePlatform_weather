@@ -98,13 +98,13 @@ class MyHomePage extends GetView<WeatherStaticsController> {
           ),
         if (sky == "2") // info_now 값이 2인 경우 흐린 이미지를 표시
           Image.asset(
-            'assets/wheather_display_images/raining.png',
+            'assets/wheather_display_images/cloud.png',
             width: 35,
             height: 35,
           ),
         if (sky == "3") // info_now 값이 2인 경우 흐린 이미지를 표시
           Image.asset(
-            'assets/wheather_display_images/cloud.png',
+            'assets/wheather_display_images/clouds.png',
             width: 35,
             height: 35,
           ),
@@ -113,7 +113,13 @@ class MyHomePage extends GetView<WeatherStaticsController> {
             'assets/wheather_display_images/fog.png',
             width: 35,
             height: 35,
-          ), // Placeholder for weather icon
+          ),
+        if (sky == "5") // info_now 값이 2인 경우 흐린 이미지를 표시
+          Image.asset(
+            'assets/wheather_display_images/raining.png',
+            width: 35,
+            height: 35,
+          ),// Placeholder for weather icon
         const SizedBox(height: 4),
         Text(
           temperature,
@@ -258,7 +264,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                         ),
                       if (info_now.sky == "2") // info_now 값이 2인 경우 흐린 이미지를 표시
                         Image.asset(
-                          'assets/wheather_display_images/raining.png',
+                          'assets/wheather_display_images/cloud.png',
                           width: 100,
                           height: 100,
                         ),
@@ -274,6 +280,13 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                           width: 100,
                           height: 100,
                         ),
+                      if (info_now.sky == "5") // info_now 값이 2인 경우 흐린 이미지를 표시
+                        Image.asset(
+                          'assets/wheather_display_images/raining.png',
+                          width: 100,
+                          height: 100,
+                        ),
+
                       Positioned(
                         bottom: -20, // 이미지 아래에 위치하도록 설정
                         right: 100, // 이미지 오른쪽에 위치하도록 설정

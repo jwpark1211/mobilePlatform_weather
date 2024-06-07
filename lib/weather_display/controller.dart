@@ -19,8 +19,9 @@ class WeatherStaticsController extends GetxController {
     List<Weather_Model> result =
         await _weatherRepository.fetchWeatherStatices();
     if (result.isNotEmpty) {
-      print("result: ${result[0].spotName}");
-      weatherStatics.assignAll(result); // result 전체를 설정
+      print("result: ${result[1].wd}");
+      weatherStatics.assignAll(result);// result 전체를 설정
+      print("length: ${weatherStatics.length}");
       isLoadingComplete.value = true;
     }
   }
