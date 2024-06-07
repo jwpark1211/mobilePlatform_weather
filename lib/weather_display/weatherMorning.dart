@@ -128,12 +128,16 @@ class MyHomePage extends GetView<WeatherStaticsController> {
     );
   }
 
-  void _navigateToSearchPage2(BuildContext context) async {
+  /*void _navigateToSearchPage2(BuildContext context) async {
     await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const SearchPage()),
     );
+  }*/
+  void _navigateToSearchPage2() async {
+    Get.offAll(() => const SearchPage());
   }
+
   @override
   Widget build(BuildContext context) {
     //var weatherStaticsList = controller.weatherStatics.toList();
@@ -142,7 +146,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(70.0), // AppBar의 높이를 줄임
         child: Obx(() {
-          if (controller.weatherStatics[0].spotName == null) {
+          if (controller.weatherStatics.isEmpty || controller.weatherStatics[0].spotName == null) {
             return AppBar(
               backgroundColor: Colors.transparent, // AppBar 배경색을 투명하게 설정
               elevation: 0,
@@ -158,7 +162,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                         IconButton(
                           icon: Icon(Icons.arrow_back, color: Colors.white),
                           // 뒤로가기(꺽새) 아이콘
-                          onPressed: () => _navigateToSearchPage2(context),
+                          onPressed: _navigateToSearchPage2,
                         ),
                         const Padding(
                           padding: EdgeInsets.only(right: 20.0),
@@ -189,7 +193,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                       IconButton(
                         icon: Icon(Icons.arrow_back, color: Colors.white),
                         // 뒤로가기(꺽새) 아이콘
-                        onPressed: () => _navigateToSearchPage2(context),
+                        onPressed: _navigateToSearchPage2,
                       ),
                       const Padding(
                         padding: EdgeInsets.only(right: 20.0),
@@ -225,6 +229,9 @@ class MyHomePage extends GetView<WeatherStaticsController> {
             )),
         padding: const EdgeInsets.all(15),
         child: Obx(() {
+          if (controller.weatherStatics.isEmpty) {
+            return Center(child: CircularProgressIndicator());
+          }
           var info_now = controller.weatherStatics[0];
           var info_OneHour = controller.weatherStatics[1];
           var info_TwoHour = controller.weatherStatics[2];

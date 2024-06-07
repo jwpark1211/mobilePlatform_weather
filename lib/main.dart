@@ -103,7 +103,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _navigateToSearchPage(BuildContext context) async {
-    await Navigator.push(
+    await Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => const SearchPage()),
     );
