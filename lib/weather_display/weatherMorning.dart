@@ -1,15 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../appbar.dart';
+import '../main.dart';
+import '../search/search_page.dart';
 import 'controller.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WeatherDisplay extends StatelessWidget {
+  const WeatherDisplay({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +79,6 @@ class MyHomePage extends GetView<WeatherStaticsController> {
 
   Widget hourlyForecastWidget(String time, String sky, String temperature,
       {Color textColor = Colors.black}) {
-    print("sky : $sky");
 
     return Column(
       children: [
@@ -129,6 +126,12 @@ class MyHomePage extends GetView<WeatherStaticsController> {
     );
   }
 
+  void _navigateToSearchPage2(BuildContext context) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SearchPage()),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     //var weatherStaticsList = controller.weatherStatics.toList();
@@ -153,9 +156,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                         IconButton(
                           icon: Icon(Icons.arrow_back, color: Colors.white),
                           // 뒤로가기(꺽새) 아이콘
-                          onPressed: () {
-                            // 뒤로가기(꺽새) 버튼 클릭 시 수행할 동작
-                          },
+                          onPressed: () => _navigateToSearchPage2(context),
                         ),
                         const Padding(
                           padding: EdgeInsets.only(right: 20.0),
@@ -186,9 +187,7 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                       IconButton(
                         icon: Icon(Icons.arrow_back, color: Colors.white),
                         // 뒤로가기(꺽새) 아이콘
-                        onPressed: () {
-                          // 뒤로가기(꺽새) 버튼 클릭 시 수행할 동작
-                        },
+                        onPressed: () => _navigateToSearchPage2(context),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(right: 20.0),
@@ -286,7 +285,6 @@ class MyHomePage extends GetView<WeatherStaticsController> {
                           width: 100,
                           height: 100,
                         ),
-
                       Positioned(
                         bottom: -20, // 이미지 아래에 위치하도록 설정
                         right: 100, // 이미지 오른쪽에 위치하도록 설정
