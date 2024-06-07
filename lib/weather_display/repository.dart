@@ -12,7 +12,6 @@ class WeatherStaticsRepository {
   WeatherStaticsRepository() {
     _dio = Dio(BaseOptions(
       baseUrl: 'https://apis.data.go.kr',
-
     ));
   }
 
@@ -24,7 +23,8 @@ class WeatherStaticsRepository {
       DateTime targetTime = now.add(Duration(hours: i * 3));
       String formattedDate = DateFormat('yyyyMMdd').format(targetTime);
       String formattedHour = DateFormat('HH').format(targetTime);
-      var response = await _dio.get('/1360000/TourStnInfoService1/getTourStnVilageFcst1?ServiceKey=EL4nXNg4uPw0MvmMFz5T9mbWclizyQGVH8kn4cR4Q1a06fw8gHnwU%2BcpFI1uW%2Bt27XKrYOm%2F0RIQUm3UbY2Gfg%3D%3D&pageNo=1&numOfRows=1&dataType=XML&CURRENT_DATE=${formattedDate}&HOUR=${formattedHour}&COURSE_ID=110');
+      var response = await _dio.get(
+          '/1360000/TourStnInfoService1/getTourStnVilageFcst1?ServiceKey=EL4nXNg4uPw0MvmMFz5T9mbWclizyQGVH8kn4cR4Q1a06fw8gHnwU%2BcpFI1uW%2Bt27XKrYOm%2F0RIQUm3UbY2Gfg%3D%3D&pageNo=1&numOfRows=1&dataType=XML&CURRENT_DATE=$formattedDate&HOUR=$formattedHour&COURSE_ID=110');
       final document = XmlDocument.parse(response.data);
       final items = document.findAllElements('item');
       print("\n items \n $items\n");
@@ -51,12 +51,7 @@ class WeatherStaticsRepository {
       String formattedHour = DateFormat('HH').format(targetTime);
 
       var response = await _dio.get(
-          '/1360000/TourStnInfoService1/getTourStnVilageFcst1',
-          queryParameters: {
-            'CURRENT_DATE': formattedDate,
-            'HOUR': formattedHour,
-            'COURSE_ID': courseId,
-          });
+          '/1360000/TourStnInfoService1/getTourStnVilageFcst1?ServiceKey=EL4nXNg4uPw0MvmMFz5T9mbWclizyQGVH8kn4cR4Q1a06fw8gHnwU%2BcpFI1uW%2Bt27XKrYOm%2F0RIQUm3UbY2Gfg%3D%3D&pageNo=1&numOfRows=1&dataType=XML&CURRENT_DATE=$formattedDate&HOUR=$formattedHour&COURSE_ID=$courseId');
 
       final document = XmlDocument.parse(response.data);
       final items = document.findAllElements('item');
