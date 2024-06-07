@@ -33,6 +33,10 @@ dependencies:
   
   sqflite: ^2.0.0+4
   path_provider: ^2.0.2
+  csv: ^5.0.0
+ 
+  
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -48,6 +52,7 @@ dev_dependencies:
   intl: ^0.19.0
   excel: ^2.0.0
   path_provider: ^2.0.11
+  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -75,6 +80,9 @@ flutter:
     - assets/wheather_display_images/cloud.png
     - assets/wheather_display_images/fog.png
     - assets/regions.xlsx
+    - assets/기상청27_관광코스별_관광지_지점정보_courseId_정렬.csv
+    - assets/기상청27_관광코스별_관광지_지점정보memo.txt
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

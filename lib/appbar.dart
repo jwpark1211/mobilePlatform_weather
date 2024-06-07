@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// 32211034 김종빈
+// 앱바 모듈화
 class WeatherAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String titleText1 = '여행';
   final String titleText2 = '을 떠나볼까요?';

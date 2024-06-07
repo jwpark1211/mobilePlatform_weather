@@ -25,38 +25,15 @@ class _SearchPageState extends State<SearchPage> {
 
   String searchText = "";
 
-  @override
-  void initState() {
-    super.initState();
-    _loadWeatherStatics();
-  }
-
-  void _loadWeatherStatics() async {
-    _weatherStatics = await _weatherRepository.fetchWeatherStatices();
-    setState(() {});
-    print(_weatherStatics[2].courseAreaName);
-    print(_weatherStatics.first.courseName);
-    print(_weatherStatics[7].spotAreaName);
-    print(_weatherStatics.first.spotName);
-    print(_weatherStatics.first.thema);
-    print(_weatherStatics.first.tm);
-    print(_weatherStatics.first.th3);
-    print(_weatherStatics.first.pop);
-    print(_weatherStatics.first.rhm);
-    print(_weatherStatics.first.sky);
-    print(_weatherStatics.first.wd);
-    print(_weatherStatics.first.ws);
-    print(_weatherStatics.length);
-  }
-
   void _navigateToBookmark() {
     // Implement navigation to bookmark page
   }
 
-  void _fetchWeatherAtSearchPage(String spotAreaName) {
-    setState(() {
-      searchText = spotAreaName;
-    });
+  void _fetchWeatherAtSearchPage(String spotAreaName) async {
+    _weatherStatics =
+        await _weatherRepository.fetchSpecificAreaWeatherData(spotAreaName);
+    searchText = spotAreaName;
+    setState(() {});
     print(searchText);
   }
 
