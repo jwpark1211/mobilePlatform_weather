@@ -27,6 +27,7 @@ class WeatherAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: () => _navigateToPrevious(context),
       ),
       title: Text.rich(TextSpan(children: [
+
         TextSpan(
           text: ' $titleText1',
           style: const TextStyle(
@@ -46,6 +47,7 @@ class WeatherAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.white,
       elevation: 0,
       actions: [
+
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: IconButton(

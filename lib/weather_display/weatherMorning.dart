@@ -145,8 +145,10 @@ class MyHomePage extends GetView<WeatherStaticsController> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(70.0), // AppBar의 높이를 줄임
         child: Obx(() {
+
           if (controller.weatherStatics.isEmpty ||
               controller.weatherStatics[0].spotName == null) {
+
             return AppBar(
               backgroundColor: Colors.transparent, // AppBar 배경색을 투명하게 설정
               elevation: 0,
