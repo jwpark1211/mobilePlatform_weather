@@ -34,7 +34,6 @@ class _SearchPageState extends State<SearchPage> {
         await _weatherRepository.fetchSpecificAreaWeatherData(spotAreaName);
     searchText = spotAreaName;
     setState(() {});
-    print(searchText);
   }
 
   @override

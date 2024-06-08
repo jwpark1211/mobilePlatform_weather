@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:final_project/appbar.dart';
 import 'package:final_project/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'WeatherToday',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -103,10 +104,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   void _navigateToSearchPage(BuildContext context) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const SearchPage()),
-    );
+    Get.off(() => const SearchPage());
   }
 
   @override

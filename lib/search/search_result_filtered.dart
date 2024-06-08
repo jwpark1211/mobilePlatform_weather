@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:final_project/weather_display/weather_model.dart';
 import 'package:final_project/weather_model.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,7 @@ class SearchResultFiltered extends StatelessWidget {
   });
 
   void _navigateToWeatherDisplay(BuildContext context, String? courseId) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => WeatherDisplay(courseId!)),
-    );
+    Get.to(() => WeatherDisplay(courseId!));
   }
 
   @override

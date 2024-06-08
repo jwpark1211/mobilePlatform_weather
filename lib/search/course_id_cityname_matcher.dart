@@ -22,7 +22,7 @@ class CourseIdAndSpotAreaNameMatcher {
 
       // CSV 데이터 파싱
       List<List<dynamic>> fields =
-          const CsvToListConverter().convert(csvString);
+          const CsvToListConverter(eol: '\n').convert(csvString);
 
       // CSV 데이터 읽기 (첫 번째 행은 헤더로 가정)
       var spotAreaNames = <String>{};
@@ -34,7 +34,7 @@ class CourseIdAndSpotAreaNameMatcher {
         if (spotAreaNames.add(spotAreaName)) {
           // 지역 명을 key로, 코스 아이디를 조회할 수 있도록.
           mapper[spotAreaName.toString()] = courseId.toString();
-          print("$spotAreaName: ${mapper[spotAreaName]}");
+          // print("$spotAreaName: ${mapper[spotAreaName]}");
         }
       }
       // 결과 출력
